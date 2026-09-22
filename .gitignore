@@ -1,6 +1,5 @@
 
 
-package-lock.json
 
 # Logs
 logs
@@ -53,7 +52,6 @@ typings/
 
 # Optional npm cache directory
 .npm
-package-lock.json
 
 # Optional eslint cache
 .eslintcache
@@ -114,3 +112,7 @@ dist
 
 # Zesty CLI instance cache (contains instance metadata)
 .zesty/
+
+# package-lock.json is intentionally COMMITTED. The Zesty starter ignored it,
+# which meant hosts like Vercel re-resolved every dependency from scratch and
+# hit peer-dependency conflicts that never appear locally.
