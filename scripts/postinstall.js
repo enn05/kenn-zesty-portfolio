@@ -10,6 +10,7 @@ const { execSync } = require('child_process');
 const inBuild =
   process.env.CI ||
   process.env.SKIP_ZESTY_SYNC ||
+  process.env.VERCEL ||                 // Vercel (also sets CI=1)
   process.env.GOOGLE_CLOUD_PROJECT ||   // Cloud Build / Cloud Run
   process.env.BUILDER_OUTPUT;           // Cloud Build buildpacks
 

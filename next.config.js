@@ -10,7 +10,8 @@ const { stage_password, ...zestyPublic } = zestyConfig;
 module.exports = {
   // Emits .next/standalone — a self-contained server with only the node_modules
   // it actually uses. Cuts the Cloud Run image from ~500MB to ~80MB and makes
-  // cold starts noticeably faster. Ignored by `next dev`.
+  // cold starts noticeably faster. Ignored by `next dev`, and ignored by Vercel
+  // (it builds its own output format), so it is safe to leave on either way.
   output: 'standalone',
   trailingSlash: true,
   // three@0.186 emits ES2022 static initialization blocks (`static { … }`).
