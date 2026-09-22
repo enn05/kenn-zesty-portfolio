@@ -1,0 +1,55 @@
+{
+  "name": "nextjs-marketing",
+  "author": "Zesty.io Platform Inc.",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS=--inspect next dev",
+    "build": "next build",
+    "start": "next start",
+    "prettier:fix": "prettier './src/**/*.js' --write",
+    "clear-all": "rimraf ./node_modules ./.next",
+    "sync": "node lib/zesty/sync.js",
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.8.3",
+    "@mui/material": "^5.8.3",
+    "@zesty-io/live-editor": "^2.0.20",
+    "@zesty-io/react-autolayout": "^1.0.0-beta.6",
+    "@zesty-io/sdk": "^1.1.2",
+    "chalk": "^4.1.2",
+    "gsap": "^3.15.0",
+    "next": "^12.3.7",
+    "node-fetch": "^2.6.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-modal-image": "^2.6.0",
+    "react-syntax-highlighter": "^16.1.1",
+    "react-youtube": "^10.0.0",
+    "three": "^0.186.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "@zesty-io/cli": "^0.0.7",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-styled-components": "^2.0.2",
+    "cross-env": "^7.0.2",
+    "execa": "^5.1.1",
+    "listr": "^0.14.3",
+    "listr-input": "^0.2.1",
+    "prettier": "^2.5.1",
+    "prettier-eslint": "^13.0.0",
+    "prettier-eslint-cli": "^9.2.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.5.4"
+  }
+}

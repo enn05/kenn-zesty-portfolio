@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.vscode
+.zesty
+npm-debug.log*
+.DS_Store
+
+# Never ship secrets into the image — ZESTY_STAGE_PASSWORD comes from
+# Secret Manager / Cloud Run env vars at runtime instead.
+.env.local
+.env*.local
+
+# Docs and guides aren't needed at runtime
+*.md
+!README.md
