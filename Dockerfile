@@ -29,10 +29,14 @@ ENV NEXT_TELEMETRY_DISABLED=1
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# PRODUCTION=true points lib/zesty/* at the Zesty production domain.
-# Set it at build time too: next.config.js reads zesty.config.json during
-# redirects() and the value is inlined into the client bundle via env.zesty.
-ENV PRODUCTION=true
+# PRODUCTION has to be known at BUILD time, not just at runtime: next.config.js
+# calls fetchZestyRedirects() inside redirects(), which Next evaluates during
+# the build, and that function picks the Zesty domain from this value. The
+# redirect list is therefore baked into the image.
+#
+# Override for a staging image:  docker build --build-arg PRODUCTION=false
+ARG PRODUCTION=true
+ENV PRODUCTION=$PRODUCTION
 
 RUN npm run build
 
@@ -42,7 +46,14 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
-ENV PRODUCTION=true
+
+# PRODUCTION is deliberately NOT set here. Every reader of it is server-side and
+# evaluates per request, so it belongs to the deployment, not the image:
+#   gcloud run deploy ... --set-env-vars PRODUCTION=true
+# Unset behaves as true (see lib/zesty/fetchPage.js), which is the safe default:
+# an unconfigured deploy reads published content rather than drafts. Note that
+# an EMPTY value is not the same as unset — PRODUCTION= evaluates false and
+# points at the password-protected preview domain, which 401s without zpw.
 
 # Don't run as root
 RUN addgroup -g 1001 -S nodejs && adduser -S nextjs -u 1001
