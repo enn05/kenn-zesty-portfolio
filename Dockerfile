@@ -38,6 +38,19 @@ COPY . .
 ARG PRODUCTION=true
 ENV PRODUCTION=$PRODUCTION
 
+# Needed at build time too, and only when PRODUCTION=false. fetchZestyRedirects()
+# reads the redirect list from the preview domain, which 401s without the
+# password -- and that failure is swallowed by a try/catch, so the build appears
+# to succeed and silently ships with no redirects at all.
+#
+# Defaults to empty, which is correct for a production image: the production
+# domain ignores zpw. So this line is a no-op on main.
+#
+# Stays in the builder stage. The runtime stage below copies only .next and
+# public out of it, so this never reaches the final image or its history.
+ARG ZESTY_STAGE_PASSWORD=
+ENV ZESTY_STAGE_PASSWORD=$ZESTY_STAGE_PASSWORD
+
 RUN npm run build
 
 # ---------- runtime ----------
