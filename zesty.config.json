@@ -5,7 +5,7 @@
   "stage_password": "",
   "src_dir": "", 
   "options": {
-    "skip_config_overwrite": false,
+    "skip_config_overwrite": true,
     "model_ignore_list": [
       "6-xyz" 
     ]
