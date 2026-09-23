@@ -15,7 +15,8 @@ import About from './About';
 import Work from './Work';
 import Lab from './Lab';
 import Contact from './Contact';
+import Unpublished from './Unpublished';
  
  export {
-   Clipping, Homepage, Role, Tech, Experience, StackGroup, Project, Home, SiteSetting, About, Work, Lab, Contact
+   Clipping, Homepage, Role, Tech, Experience, StackGroup, Project, Home, SiteSetting, About, Work, Lab, Contact, Unpublished
  }
